@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import Link from "next/link";
-
+import { useRouter } from "next/navigation";
 export default function Register() {
   const [formData, setFormData] = useState({
     first_name: "",
@@ -13,7 +13,7 @@ export default function Register() {
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-
+  const router = useRouter();
   const handleSubmit = async (e) => {
     e.preventDefault(); // Prevents form from refreshing
 

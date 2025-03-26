@@ -8,8 +8,9 @@ const tabs = [
   { title: "Shiping", active: false },
   { title: "Return Polocies", active: false },
 ];
+export default function ShopDetailsTab({product}) {
+// console.log("ui product : ",product);
 
-export default function ShopDetailsTab() {
   const [currentTab, setCurrentTab] = useState(1);
 
   return (
@@ -42,25 +43,21 @@ export default function ShopDetailsTab() {
                 >
                   <div className="">
                     <p className="mb_30">
-                      Button-up shirt sleeves and a relaxed silhouette. It’s
-                      tailored with drapey, crinkle-texture fabric that’s made
-                      from LENZING™ ECOVERO™ Viscose — responsibly sourced
-                      wood-based fibres produced through a process that reduces
-                      impact on forests, biodiversity and water supply.
+                      {product.notes}
                     </p>
                     <div className="tf-product-des-demo">
                       <div className="right">
                         <h3 className="fs-16 fw-5">Features</h3>
                         <ul>
-                          <li>Front button placket</li>
-                          <li>Adjustable sleeve tabs</li>
-                          <li>Babaton embroidered crest at placket and hem</li>
+                          <li> Metal  - {product.mname}</li>
+                          <li>  Metal Finish  - {product.mfname}</li>
+                          <li>  Total Weight  - {product.gross_weight}</li>
                         </ul>
                         <h3 className="fs-16 fw-5">Materials Care</h3>
                         <ul className="mb-0">
-                          <li>Content: 100% LENZING™ ECOVERO™ Viscose</li>
-                          <li>Care: Hand wash</li>
-                          <li>Imported</li>
+                          <li>Engraving - {product.engravings}</li>
+                          <li>engravings location - {product.engravings_location}</li>
+                          <li>Location - {product.final_location}</li>
                         </ul>
                       </div>
                       <div className="left">
@@ -69,7 +66,7 @@ export default function ShopDetailsTab() {
                           <div className="icon">
                             <i className="icon-machine" />
                           </div>
-                          <span>Machine wash max. 30ºC. Short spin.</span>
+                          <span>Machine wash max. 30ºC. Short spin. </span>
                         </div>
                         <div className="d-flex gap-10 mb_15 align-items-center">
                           <div className="icon">

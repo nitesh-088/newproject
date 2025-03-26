@@ -26,7 +26,7 @@ export const ProductCardWishlist = ({ product }) => {
   }, []);
   const defaultImage = "https://www.tanishq.co.in/dw/image/v2/BKCK_PRD/on/demandware.static/-/Sites-Tanishq-product-catalog/default/dw276a9a4b/images/hi-res/50DXA1FIJAA10_2.jpg?sw=480&sh=480" ;
 
-  console.log("use contecy ",useContextElement())
+  // console.log("use contecy ",useContextElement())
   return (
     
 
@@ -36,7 +36,7 @@ export const ProductCardWishlist = ({ product }) => {
           <Image
             className="lazyload img-product"
             data-src={product.img}
-            src={product.img ? product.img : defaultImage} 
+            src={product.images && product.images.length > 1 ? product.images[1] : defaultImage} 
             alt="image-product"
             width={720}
             height={1005}
@@ -44,7 +44,7 @@ export const ProductCardWishlist = ({ product }) => {
          <Image
   className="lazyload img-hover"
   data-src={product.imgHoverSrc || defaultImage}
-  src={product.imgHoverSrc || defaultImage}
+  src={product.images[2] || defaultImage}
   alt="image-product"
   width={720}
   height={1005}

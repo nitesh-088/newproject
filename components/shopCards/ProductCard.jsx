@@ -41,7 +41,7 @@ export const ProductCard = ({ product }) => {
           <Image
             className="lazyload img-product"
             data-src={product.imgSrc}
-            src={Array.isArray(product.images) && product.images.length > 0 ? product.images[0] : "/fallback-image.jpg"}
+            src={Array.isArray(product.images) && product.images.length > 0 ? product.images[0] : "https://www.tanishq.co.in/dw/image/v2/BKCK_PRD/on/demandware.static/-/Sites-Tanishq-product-catalog/default/dw276a9a4b/images/hi-res/50DXA1FIJAA10_2.jpg?sw=480&sh=480"}
             alt="image-product"
             width={720}
             height={1005}
@@ -51,7 +51,9 @@ export const ProductCard = ({ product }) => {
             data-src={
               product.imgHoverSrc ? product.imgHoverSrc : product.imgSrc
             }
-            src={product.imgHoverSrc ? product.imgHoverSrc : defaultImage}
+            src={Array.isArray(product.images) && product.images[1] ? product.images[1] : "https://www.tanishq.co.in/dw/image/v2/BKCK_PRD/on/demandware.static/-/Sites-Tanishq-product-catalog/default/dw276a9a4b/images/hi-res/50DXA1FIJAA10_2.jpg?sw=480&sh=480"}
+            // src={product.images[1] ? product.imgHoverSrc : defaultImage}
+
             alt="image-product"
             width={720}
             height={1005}
@@ -86,6 +88,9 @@ export const ProductCard = ({ product }) => {
             </span>
             <span className="icon icon-delete" />
           </a>
+
+          {/* add to cart */}
+          
 
           <a
             href="#compare"

@@ -16,7 +16,8 @@ import { allProducts } from "@/data/products";
 import { useContextElement } from "@/context/Context";
 import { openCartModal } from "@/utlis/openCartModal";
 
-export default function DetailsOuterZoom({ product = allProducts[0] }) {
+export default function DetailsOuterZoom({ product  }) {
+  console.log(product);
   const [currentColor, setCurrentColor] = useState(colors[0]);
   const [currentSize, setCurrentSize] = useState(sizeOptions[1]);
   const [quantity, setQuantity] = useState(1);
@@ -53,6 +54,7 @@ export default function DetailsOuterZoom({ product = allProducts[0] }) {
               <div className="tf-product-media-wrap sticky-top">
                 <div className="thumbs-slider">
                   <Slider1ZoomOuter
+                    product={product}
                     handleColor={handleColor}
                     currentColor={currentColor.value}
                     firstImage={product.images[1]}
@@ -66,7 +68,7 @@ export default function DetailsOuterZoom({ product = allProducts[0] }) {
                 <div className="tf-product-info-list other-image-zoom">
                   <div className="tf-product-info-title">
                     <h5>
-                      {product.loc}
+                    {product.collection_name}  {product.sname}  {product.cname}
                     </h5>
                   </div>
                   <div className="tf-product-info-badges">
@@ -91,11 +93,11 @@ export default function DetailsOuterZoom({ product = allProducts[0] }) {
                       <span>20</span>% OFF
                     </div>
                   </div>
-                  <div className="tf-product-info-liveview">
+                  {/* <div className="tf-product-info-liveview">
                     <div className="liveview-count">20</div>
                     <p className="fw-6">People are viewing this right now</p>
-                  </div>
-                  <div className="tf-product-info-countdown">
+                  </div> */}
+                  {/* <div className="tf-product-info-countdown">
                     <div className="countdown-wrap">
                       <div className="countdown-title">
                         <i className="icon-time tf-ani-tada" />
@@ -107,8 +109,8 @@ export default function DetailsOuterZoom({ product = allProducts[0] }) {
                         </div>
                       </div>
                     </div>
-                  </div>
-                  <div className="tf-product-info-variant-picker">
+                  </div> */}
+                  {/* <div className="tf-product-info-variant-picker">
                     <div className="variant-picker-item">
                       <div className="variant-picker-label">
                         Color:
@@ -179,30 +181,31 @@ export default function DetailsOuterZoom({ product = allProducts[0] }) {
                         ))}
                       </form>
                     </div>
-                  </div>
-                  <div className="tf-product-info-quantity">
-                    <div className="quantity-title fw-6">Quantity</div>
-                    <Quantity setQuantity={setQuantity} />
-                  </div>
-                  <div className="tf-product-info-buy-button">
+                  </div> */}
+                  
+                  <div className="tf-product-info-buy-button" >
+                 
                     <form onSubmit={(e) => e.preventDefault()} className="">
-                      <a
-                        onClick={() => {
-                          openCartModal();
-                          addProductToCart(product.id, quantity ? quantity : 1);
-                        }}
-                        className="tf-btn btn-fill justify-content-center fw-6 fs-16 flex-grow-1 animate-hover-btn"
-                      >
-                        <span>
-                          {isAddedToCartProducts(product.id)
-                            ? "Already Added"
-                            : "Add to cart"}{" "}
-                          -{" "}
-                        </span>
-                        <span className="tf-qty-price">
-                          ${(product.price * quantity).toFixed(2)}
-                        </span>
-                      </a>
+                    <div className="tf-product-info-quantity">
+                    <Quantity setQuantity={setQuantity} />
+                    </div>
+                    <a
+  onClick={() => {
+    openCartModal();
+    addProductToCart(product.id, quantity ? quantity : 1);
+  }}
+  className="tf-btn btn-fill justify-content-center fw-6 fs-16 flex-grow-1 animate-hover-btn"
+>
+  <span>
+    {isAddedToCartProducts(product.id)
+      ? "Already Added"
+      : "Add to cart"}{" "}
+    -{" "}
+  </span>
+  <span className="tf-qty-price">
+    ${(product.ratail_price_int * (quantity || 1)).toFixed(2)}
+  </span>
+</a>
                       <a
                         onClick={() => addToWishlist(product.id)}
                         className="tf-product-btn-wishlist hover-tooltip box-icon bg_white wishlist btn-icon-action"
@@ -248,6 +251,7 @@ export default function DetailsOuterZoom({ product = allProducts[0] }) {
                             width={64}
                             height={18}
                           />
+                          {/* <span> </span>${(product.ratail_price_int * quantity).toFixed(2)} */}
                         </a>
                         <a href="#" className="payment-more-option">
                           More payment options
@@ -255,6 +259,39 @@ export default function DetailsOuterZoom({ product = allProducts[0] }) {
                       </div>
                     </form>
                   </div>
+                  <div className="border rounded-lg p-4 bg-white shadow-md">
+      <h5 className="text-sm font-semibold border-b pb-2">Specification</h5>
+      <div className="mt-2 space-y-2">
+        <div className="flex justify-between border-bottom pb-2">
+          <span className="font-semibold">Metal</span>
+          <span style={{marginLeft:'30px'}}>{product.mname}</span>
+        </div>
+        <div className="flex justify-between border-bottom mt-2 pb-2">
+          <span className="font-semibold">Metal Finish</span>
+          <span style={{marginLeft:'30px'}}>{product.mfname}</span>
+        </div>
+        <div className="flex justify-between border-bottom mt-2 pb-2">
+          <span className="font-semibold">Total Weight</span>
+          <span style={{marginLeft:'30px'}}>{product.gross_weight} gms</span>
+        </div>
+        
+        <div className="flex justify-between border-bottom mt-2 pb-2">
+          <span className="font-semibold">Engraving</span>
+          <span style={{marginLeft:'30px'}}>{product.engravings} </span>
+        </div>
+        <div className="flex justify-between border-bottom mt-2 pb-2">
+          <span className="font-semibold">Engravings On</span>
+          <span style={{marginLeft:'30px'}}> {product.engravings_location} </span>
+        </div>
+
+        <div className="flex justify-between border-bottom mt-2 pb-2">
+          <span className="font-semibold">Location</span>
+          <span style={{marginLeft:'30px'}}>{product.final_location} </span>
+        </div>
+      </div>
+    </div>
+
+
                   <div className="tf-product-info-extra-link">
                     <a
                       href="#compare_color"

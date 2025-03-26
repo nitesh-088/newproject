@@ -16,7 +16,6 @@ export default function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Submitted Data:", formData);
 
     try {
       const response = await fetch("https://64facetscrm.com/theme/login", {
@@ -28,7 +27,7 @@ export default function Login() {
       });
 
       const data = await response.json();
-      console.log("Response Data:", data);
+      // console.log("Response Data:", data);
 
       if (data.status) {
         sessionStorage.setItem("user", JSON.stringify(data.user));

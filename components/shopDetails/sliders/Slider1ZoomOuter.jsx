@@ -7,166 +7,184 @@ import { Navigation, Thumbs } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 export default function Slider1ZoomOuter({
+  product,
   currentColor = "Beige",
   handleColor = () => {},
   firstImage,
 }) {
-  const images = [
-    {
-      id: 1,
-      src: firstImage || "/images/shop/products/p-d1.png",
-      alt: "",
-      width: 770,
-      height: 1075,
-      dataValue: "beige",
-    },
-    {
-      id: 2,
-      src: "/images/shop/products/hmgoepprod.jpg",
-      alt: "",
-      width: 713,
-      height: 1070,
-      dataValue: "beige",
-    },
-    {
-      id: 3,
-      src: "/images/shop/products/hmgoepprod2.jpg",
-      alt: "img-compare",
-      width: 713,
-      height: 1070,
-      dataValue: "beige",
-    },
-    {
-      id: 4,
-      src: "/images/shop/products/hmgoepprod3.jpg",
-      alt: "img-compare",
-      width: 713,
-      height: 1070,
-      dataValue: "beige",
-    },
-    {
-      id: 5,
-      src: "/images/shop/products/hmgoepprod4.jpg",
-      alt: "img-compare",
-      width: 768,
-      height: 1152,
-      dataValue: "beige",
-    },
-    {
-      id: 6,
-      src: "/images/shop/products/hmgoepprod5.jpg",
-      alt: "img-compare",
-      width: 713,
-      height: 1070,
-      dataValue: "beige",
-    },
-    {
-      id: 7,
-      src: "/images/shop/products/hmgoepprod6.jpg",
-      alt: "",
-      width: 768,
-      height: 1152,
-      dataValue: "black",
-    },
-    {
-      id: 8,
-      src: "/images/shop/products/hmgoepprod7.jpg",
-      alt: "",
-      width: 713,
-      height: 1070,
-      dataValue: "black",
-    },
-    {
-      id: 9,
-      src: "/images/shop/products/hmgoepprod8.jpg",
-      alt: "",
-      width: 713,
-      height: 1070,
-      dataValue: "black",
-    },
-    {
-      id: 10,
-      src: "/images/shop/products/hmgoepprod9.jpg",
-      alt: "",
-      width: 768,
-      height: 1152,
-      dataValue: "black",
-    },
-    {
-      id: 11,
-      src: "/images/shop/products/hmgoepprod10.jpg",
-      alt: "",
-      width: 713,
-      height: 1070,
-      dataValue: "blue",
-    },
-    {
-      id: 12,
-      src: "/images/shop/products/hmgoepprod11.jpg",
-      alt: "",
-      width: 713,
-      height: 1070,
-      dataValue: "blue",
-    },
-    {
-      id: 13,
-      src: "/images/shop/products/hmgoepprod12.jpg",
-      alt: "",
-      width: 768,
-      height: 1152,
-      dataValue: "blue",
-    },
-    {
-      id: 14,
-      src: "/images/shop/products/hmgoepprod13.jpg",
-      alt: "",
-      width: 768,
-      height: 1152,
-      dataValue: "blue",
-    },
-    {
-      id: 15,
-      src: "/images/shop/products/hmgoepprod14.jpg",
-      alt: "",
-      width: 768,
-      height: 1152,
-      dataValue: "white",
-    },
-    {
-      id: 16,
-      src: "/images/shop/products/hmgoepprod15.jpg",
-      alt: "",
-      width: 768,
-      height: 1152,
-      dataValue: "white",
-    },
-    {
-      id: 17,
-      src: "/images/shop/products/hmgoepprod16.jpg",
-      alt: "",
-      width: 768,
-      height: 1152,
-      dataValue: "white",
-    },
-    {
-      id: 18,
-      src: "/images/shop/products/hmgoepprod17.jpg",
-      alt: "",
-      width: 768,
-      height: 1152,
-      dataValue: "white",
-    },
+  // const images = [
+  //   {
+  //     id: 1,
+  //     src: firstImage || "/images/shop/products/p-d1.png",
+  //     alt: "",
+  //     width: 770,
+  //     height: 1075,
+  //     dataValue: "beige",
+  //   },
+  //   {
+  //     id: 2,
+  //     src: "/images/shop/products/hmgoepprod.jpg",
+  //     alt: "",
+  //     width: 713,
+  //     height: 1070,
+  //     dataValue: "beige",
+  //   },
+  //   {
+  //     id: 3,
+  //     src: "/images/shop/products/hmgoepprod2.jpg",
+  //     alt: "img-compare",
+  //     width: 713,
+  //     height: 1070,
+  //     dataValue: "beige",
+  //   },
+  //   {
+  //     id: 4,
+  //     src: "/images/shop/products/hmgoepprod3.jpg",
+  //     alt: "img-compare",
+  //     width: 713,
+  //     height: 1070,
+  //     dataValue: "beige",
+  //   },
+  //   {
+  //     id: 5,
+  //     src: "/images/shop/products/hmgoepprod4.jpg",
+  //     alt: "img-compare",
+  //     width: 768,
+  //     height: 1152,
+  //     dataValue: "beige",
+  //   },
+  //   {
+  //     id: 6,
+  //     src: "/images/shop/products/hmgoepprod5.jpg",
+  //     alt: "img-compare",
+  //     width: 713,
+  //     height: 1070,
+  //     dataValue: "beige",
+  //   },
+  //   {
+  //     id: 7,
+  //     src: "/images/shop/products/hmgoepprod6.jpg",
+  //     alt: "",
+  //     width: 768,
+  //     height: 1152,
+  //     dataValue: "black",
+  //   },
+  //   {
+  //     id: 8,
+  //     src: "/images/shop/products/hmgoepprod7.jpg",
+  //     alt: "",
+  //     width: 713,
+  //     height: 1070,
+  //     dataValue: "black",
+  //   },
+  //   {
+  //     id: 9,
+  //     src: "/images/shop/products/hmgoepprod8.jpg",
+  //     alt: "",
+  //     width: 713,
+  //     height: 1070,
+  //     dataValue: "black",
+  //   },
+  //   {
+  //     id: 10,
+  //     src: "/images/shop/products/hmgoepprod9.jpg",
+  //     alt: "",
+  //     width: 768,
+  //     height: 1152,
+  //     dataValue: "black",
+  //   },
+  //   {
+  //     id: 11,
+  //     src: "/images/shop/products/hmgoepprod10.jpg",
+  //     alt: "",
+  //     width: 713,
+  //     height: 1070,
+  //     dataValue: "blue",
+  //   },
+  //   {
+  //     id: 12,
+  //     src: "/images/shop/products/hmgoepprod11.jpg",
+  //     alt: "",
+  //     width: 713,
+  //     height: 1070,
+  //     dataValue: "blue",
+  //   },
+  //   {
+  //     id: 13,
+  //     src: "/images/shop/products/hmgoepprod12.jpg",
+  //     alt: "",
+  //     width: 768,
+  //     height: 1152,
+  //     dataValue: "blue",
+  //   },
+  //   {
+  //     id: 14,
+  //     src: "/images/shop/products/hmgoepprod13.jpg",
+  //     alt: "",
+  //     width: 768,
+  //     height: 1152,
+  //     dataValue: "blue",
+  //   },
+  //   {
+  //     id: 15,
+  //     src: "/images/shop/products/hmgoepprod14.jpg",
+  //     alt: "",
+  //     width: 768,
+  //     height: 1152,
+  //     dataValue: "white",
+  //   },
+  //   {
+  //     id: 16,
+  //     src: "/images/shop/products/hmgoepprod15.jpg",
+  //     alt: "",
+  //     width: 768,
+  //     height: 1152,
+  //     dataValue: "white",
+  //   },
+  //   {
+  //     id: 17,
+  //     src: "/images/shop/products/hmgoepprod16.jpg",
+  //     alt: "",
+  //     width: 768,
+  //     height: 1152,
+  //     dataValue: "white",
+  //   },
+  //   {
+  //     id: 18,
+  //     src: "/images/shop/products/hmgoepprod17.jpg",
+  //     alt: "",
+  //     width: 768,
+  //     height: 1152,
+  //     dataValue: "white",
+  //   },
+  // ];
+  const defaultImages = [
+    { width: 770, height: 1075, dataValue: "beige" },
+    { width: 713, height: 1070, dataValue: "beige" },
+    { width: 713, height: 1070, dataValue: "beige" },
+    { width: 713, height: 1070, dataValue: "beige" },
+    { width: 768, height: 1152, dataValue: "beige" },
+    { width: 713, height: 1070, dataValue: "beige" },
+    { width: 768, height: 1152, dataValue: "black" },
   ];
 
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const swiperRef = useRef(null);
   useEffect(() => {
-    const slideIndex =
-      images.filter(
-        (elm) => elm.dataValue.toLowerCase() == currentColor.toLowerCase()
-      )[0]?.id - 1;
-    swiperRef.current.slideTo(slideIndex);
-  }, [currentColor]);
+    if (!product?.images || product.images.length === 0) return;
+  
+    const filteredImages = product.images.filter(
+      (elm) => elm?.dataValue && elm.dataValue.toLowerCase() === currentColor?.toLowerCase()
+    );
+  
+    const slideIndex = filteredImages.length > 0 ? (filteredImages[0]?.id ? filteredImages[0].id - 1 : 0) : 0;
+  
+    if (swiperRef.current) {
+      swiperRef.current.slideTo(slideIndex);
+    }
+  }, [currentColor, product?.images]);
+  
+  
   useEffect(() => {
     // Function to initialize Drift
     const imageZoom = () => {
@@ -234,76 +252,82 @@ export default function Slider1ZoomOuter({
           },
         }}
       >
-        {images.map((slide, index) => (
+
+      { product?.images?.map((imageSrc, index) => (
           <SwiperSlide key={index} className="stagger-item">
             <div className="item">
               <Image
                 className="lazyload"
-                data-src={slide.src}
+                data-src="image"
                 alt={""}
-                src={slide.src} // Optional fallback for non-lazy loading
-                width={slide.width}
-                height={slide.height}
+                src={imageSrc} // Optional fallback for non-lazy loading
+               width= { defaultImages[index]?.width || 300}
+               height={ defaultImages[index]?.height || 400}
               />
             </div>
           </SwiperSlide>
         ))}
       </Swiper>
-
       <Gallery>
-        <Swiper
-          dir="ltr"
-          spaceBetween={10}
-          slidesPerView={1}
-          navigation={{
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev",
-          }}
-          className="tf-product-media-main"
-          id="gallery-swiper-started"
-          thumbs={{ swiper: thumbsSwiper }}
-          modules={[Thumbs, Navigation]}
-          onSwiper={(swiper) => (swiperRef.current = swiper)}
-          onSlideChange={(swiper) => {
-            handleColor(images[swiper.activeIndex].dataValue);
-          }}
-        >
-          {images.map((slide, index) => (
-            <SwiperSlide key={index}>
-              <Item
-                original={slide.src}
-                thumbnail={slide.src}
-                width={slide.width}
-                height={slide.height}
+  <Swiper
+    dir="ltr"
+    spaceBetween={10}
+    slidesPerView={1}
+    navigation={{
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    }}
+    className="tf-product-media-main"
+    id="gallery-swiper-started"
+    thumbs={{ swiper: thumbsSwiper }}
+    modules={[Thumbs, Navigation]}
+    onSwiper={(swiper) => (swiperRef.current = swiper)}
+    onSlideChange={(swiper) => {
+      const currentImage = product.images?.[swiper.activeIndex];
+      if (currentImage?.dataValue) {
+        handleColor(currentImage.dataValue);
+      }
+    }}
+  >
+    {product?.images?.map((imageSrc, index) => {
+      const imgProps = defaultImages[index] || { width: 300, height: 400 }; // Ensure fallback
+      return (
+        <SwiperSlide key={index}>
+          <Item original={imageSrc} thumbnail={imageSrc} width={imgProps.width} height={imgProps.height}>
+            {({ ref, open }) => (
+              <a
+                className="item"
+                href={imageSrc}
+                data-pswp-width={imgProps.width}
+                data-pswp-height={imgProps.height}
+                onClick={(e) => {
+                  e.preventDefault();
+                  open();
+                }}
               >
-                {({ ref, open }) => (
-                  <a
-                    className="item"
-                    data-pswp-width={slide.width}
-                    data-pswp-height={slide.height}
-                    onClick={open}
-                  >
-                    <Image
-                      className="tf-image-zoom lazyload"
-                      data-zoom={slide.src}
-                      data-src={slide.src}
-                      ref={ref}
-                      alt="image"
-                      width={slide.width}
-                      height={slide.height}
-                      src={slide.src} // Optional fallback for non-lazy loading
-                    />
-                  </a>
-                )}
-              </Item>
-            </SwiperSlide>
-          ))}
+                <Image
+                  className="tf-image-zoom lazyload"
+                  data-zoom={imageSrc}
+                  data-src={imageSrc}
+                  ref={ref}
+                  alt="Product Image"
+                  width={imgProps.width}
+                  height={imgProps.height}
+                  src={imageSrc}
+                />
+              </a>
+            )}
+          </Item>
+        </SwiperSlide>
+      );
+    })}
 
-          {/* Navigation buttons */}
-          <div className="swiper-button-next button-style-arrow thumbs-next"></div>
-          <div className="swiper-button-prev button-style-arrow thumbs-prev"></div>
-        </Swiper>{" "}
-      </Gallery>
+    {/* Navigation buttons */}
+    <div className="swiper-button-next button-style-arrow thumbs-next"></div>
+    <div className="swiper-button-prev button-style-arrow thumbs-prev"></div>
+  </Swiper>
+</Gallery>
+
     </>
   );
 }

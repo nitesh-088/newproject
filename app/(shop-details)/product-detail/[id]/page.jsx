@@ -8,7 +8,8 @@ import ShopDetailsTab from "@/components/shopDetails/ShopDetailsTab";
 import React from "react";
 import Link from "next/link";
 import DetailsOuterZoom from "@/components/shopDetails/DetailsOuterZoom";
-import { useApi,ApiProvider } from "@/context/ApiContext";
+import { useState ,useEffect } from "react";
+// import { useApi,ApiProvider } from "@/context/ApiContext";
 
 // export const metadata = {
 //   title: "Shop Details || Ecomus - Ultimate Nextjs Ecommerce Template",
@@ -17,18 +18,63 @@ import { useApi,ApiProvider } from "@/context/ApiContext";
 // import { allProducts } from "@/data/products";
 import ProductSinglePrevNext from "@/components/common/ProductSinglePrevNext";
 export default function page({ params }) {
-  const{data , loading } = useApi();
+  const [product, setProduct] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  // const{data , loading } = useApi();
+  useEffect(() => {
+    if (!params.id) return; // ✅ Agar params me `id` nahi mila to API call nahi karega
+
+    const fetchProduct = async () => {
+      setLoading(true);
+      setError(null);
+
+      try {
+        const response = await fetch("https://64facetscrm.com/theme/product_details", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ style_id: params.id }), // ✅ API me `params.id` pass kiya
+        });
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch product data");
+        }
+
+        const data = await response.json();
+        console.log("Fetched Product Data:", data); // ✅ Debugging ke liye console output
+
+        if (data.status && data.data.length > 0) {
+          setProduct(data.data[0]); // ✅ Pehla product assign kar diya
+        } else {
+          setProduct(null);
+        }
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProduct();
+  }, [params.id]); // ✅ Jab `params.id` change hoga tab API call hogi
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
+  if (!product) return <div>Product not found</div>;
+
   
-    if (loading) return <div>Loading...</div>;
+    // if (loading) return <div>Loading...</div>;
     // if (error) return <div>Error: {error}</div>;
-    if (!data || !data.product) return <div>No data available</div>;
-    console.log("Params:", params); 
+    // if (!data || !data.product) return <div>No data available</div>;
+    // console.log("Params:", params); 
     // const {product} = data;
     // const product = data.product.find((item) => item.style_id === params.id) || null;
-    const product = data.product.find((item) => item.style_id === String(params.id)) || null;
+    // const product = data.product.find((item) => item.style_id === String(params.id)) || null;
 
-    console.log("product : ",product)
-    if (!product) return <div>Product not found</div>;
+    // console.log("product : ",product)
+    // if (!product) return <div>Product not found</div>;
 
   // const product =
   //   allProducts.filter((elm) => elm.id == params.id)[0] || allProducts[0];
@@ -46,6 +92,7 @@ export default function page({ params }) {
 
               <span className="text">
                 {product.style_id }
+
               </span>
             </div>
             <ProductSinglePrevNext currentId={product.id} />
@@ -53,7 +100,7 @@ export default function page({ params }) {
         </div>
       </div>
       <DetailsOuterZoom product={product} />
-      <ShopDetailsTab />
+      <ShopDetailsTab product={product} />
       <Products />
       <RecentProducts />
       <Footer1 />
