@@ -101,8 +101,9 @@ export default function page({ params }) {
       </div>
       <DetailsOuterZoom product={product} />
       <ShopDetailsTab product={product} />
+      
       <Products />
-      <RecentProducts />
+      <RecentProducts />  
       <Footer1 />
     </>
   );

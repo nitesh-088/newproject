@@ -15,9 +15,6 @@ export default function Categories() {
 
  const { categories } = data;
 
-
-
-
   return (
     <section className="flat-spacing-4 flat-categorie">
       <div className="container-full">
@@ -67,7 +64,8 @@ export default function Categories() {
                   <div className="collection-item style-left hover-img">
                     <div className="collection-inner">
                       <Link
-                        href={item.url}
+                        // href={`/shop-category/${item.name.toLowerCase()}/${item.id}`}
+                        href={`/shop-category/${item.name.toLowerCase()}`}
                         className="collection-image img-style" 
                         target="_blank"
                         rel="noopener noreferrer"

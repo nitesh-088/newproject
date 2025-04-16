@@ -32,7 +32,7 @@ export default function ShopCart() {
       <div className="modal-dialog">
         <div className="modal-content">
           <div className="header">
-            <div className="title fw-5">Shopping cart</div>
+            <div className="title fw-5">Shopping cart kk</div>
             <span
               className="icon-close icon-close-popup"
               data-bs-dismiss="modal"

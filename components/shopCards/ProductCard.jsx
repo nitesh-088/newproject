@@ -143,7 +143,7 @@ export const ProductCard = ({ product }) => {
           {/* {product.img} */}
         </Link>
         <span className="price">${product.ratail_price_int}</span>
-        {product.colors && (
+        {product&& (
           <ul className="list-color-product">
             {/* {product.colors.map((color) => (
               <li

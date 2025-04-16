@@ -153,7 +153,7 @@ export default function QuickAdd() {
                     />
                   </a>
                   <a href="#" className="payment-more-option">
-                    More payment options
+                    More payment options 
                   </a>
                 </div>
               </form>

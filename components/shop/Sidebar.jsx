@@ -1,11 +1,25 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useParams } from "next/navigation";
 import { featuredProducts } from "@/data/products";
 import { galleryItems } from "@/data/gallery";
-import { categories } from "@/data/categories";
+// import { categories } from "@/data/categories";
 import { socialLinks } from "@/data/socials";
-export default function Sidebar() {
+import { useApi, ApiProvider } from "@/context/ApiContext";
+export default function Sidebar({allProducts }) {
+  const {data , loading } = useApi();
+  
+  if (loading) return <div>Loading...</div>;
+  // if (error) return <div>Error: {error}</div>;
+  if (!data || !data.header) return <div>No data available</div>;
+  const { id } = useParams();
+ console.log("sdebar id  ll : ",id);
+  const { categories } = data;
+
+  console.log("categoru g go :",categories);
+
+  // console.log('all products id ', allProducts);
   return (
     <aside className="tf-shop-sidebar wrap-sidebar-mobile">
       <div className="widget-facet wd-categories">
@@ -21,14 +35,63 @@ export default function Sidebar() {
         </div>
         <div id="categories" className="collapse show">
           <ul className="list-categoris current-scrollbar mb_36">
-            {categories.map((category, index) => (
-              <li key={index} className={`cate-item ${category.className}`}>
-                <a href="#">
-                  <span>{category.name}</span>&nbsp;
-                  <span>({category.count})</span>
-                </a>
-              </li>
-            ))}
+          {categories.map((category, index) => {
+        const productCount = allProducts.filter(
+          (product) => product.category === category.id
+        ).length;
+
+        // ✅ check if URL id matches category.name
+        console.log("nameee : ",category.name.toLowerCase());
+        // const isChecked = category.name.toLowerCase === id;
+        const isChecked = category.name.toLowerCase() === id;
+          return (
+            <li key={index} className={`cate-item ${category.className}`}>
+              <a href="#">
+              <input
+                type="checkbox"
+                name="accept"
+                id={`accept-${category.id}`}
+                checked={isChecked}
+                readOnly
+              />&nbsp;
+                <span>{category.name}</span>&nbsp;
+                <span>({productCount})</span> {/* Yahan filter count show hoga */}
+              </a>
+            </li>
+          );
+        })}
+          </ul>
+        </div>
+      </div>
+      <div className="widget-facet wd-categories">
+        <div
+          className="facet-title"
+          data-bs-target="#categories"
+          data-bs-toggle="collapse"
+          aria-expanded="true"
+          aria-controls="categories"
+        >
+          <span>Product Subcategories</span>
+          <span className="icon icon-arrow-up" />
+        </div>
+        <div id="categories" className="collapse show">
+          <ul className="list-categoris current-scrollbar mb_36">
+          {categories.map((category, index) => {
+          // allProducts me se sirf is category ke products ko filter karein
+          const productCount = allProducts.filter(
+            (product) => product.category === category.id
+          ).length;
+
+          return (
+            <li key={index} className={`cate-item ${category.className}`}>
+              <a href="#">
+              <input type="checkbox" name="accept" id="accept" />&nbsp;
+                <span>{category.name}</span>&nbsp;
+                <span>({productCount})</span> {/* Yahan filter count show hoga */}
+              </a>
+            </li>
+          );
+        })}
           </ul>
         </div>
       </div>

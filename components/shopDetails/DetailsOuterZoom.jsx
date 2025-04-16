@@ -247,7 +247,7 @@ export default function DetailsOuterZoom({ product  }) {
                           Buy with
                           <Image
                             alt="image"
-                            src="/images/payments/paypal.png"
+                            src="https://themesflat.co/html/ecomus/images/payments/paypal.png"
                             width={64}
                             height={18}
                           />

@@ -6,7 +6,7 @@ import Link from "next/link";
 import LanguageSelect from "../common/LanguageSelect";
 import CurrencySelect from "../common/CurrencySelect";
 import { aboutLinks, footerLinks, paymentImages } from "@/data/footerLinks";
-import { useApi } from "@/context/ApiContext";
+import { useApi,ApiProvider } from "@/context/ApiContext";
 export default function Footer2({ bgColor = "background-black" }) {
   useEffect(() => {
     const headings = document.querySelectorAll(".footer-heading-moblie");
@@ -58,8 +58,11 @@ export default function Footer2({ bgColor = "background-black" }) {
 
       
   };
-  const { data, loading, error } = useApi();
-
+const {data , loading} = useApi();
+if (loading) return <div>Loading...</div>;
+if (!data) return <div>No data available</div>;
+          const{ theme } = data;
+         const{social} = data;
   return (
     <footer id="footer" className={`footer ${bgColor}`}>
       <div className="footer-wrap wow fadeIn" data-wow-delay="0s">
@@ -76,23 +79,23 @@ export default function Footer2({ bgColor = "background-black" }) {
                         width={136}
                         height={21}
                       /> */}
-                       <img src={data.app_logo} alt="Fav Icon" style={{ width: "50px", height: "50px" }} />
+                       <img src={theme.app_logo} alt="Fav Icon" style={{ width: "50px", height: "50px" }} />
                     </Link>
                   </div>
                   <ul>
                     <li>
                       <p>
-                        Address: {data.adders}
+                        Address: {theme.adders}
                       </p>
                     </li>
                     <li>
                       <p>
-                        Email: <a href="#">{data.email}</a>
+                        Email: <a href="#">{theme.email}</a>
                       </p>
                     </li>
                     <li>
                       <p>
-                        Phone: <a href="#">{data.phone}</a>
+                        Phone: <a href="#">{theme.phone}</a>
                       </p>
                     </li>
                   </ul>

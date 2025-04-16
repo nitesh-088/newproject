@@ -16,9 +16,9 @@ export default function page() {
         <div className="container-full">
           <div className="row">
             <div className="col-12">
-              <div className="heading text-center">New Arrival</div>
+              <div className="heading text-center">New Arrival page</div>
               <p className="text-center text-2 text_black-2 mt_5">
-                Shop through our latest selection of Fashion
+                Shop through our latest selection of Fashion 
               </p>
             </div>
           </div>
